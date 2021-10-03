@@ -1,15 +1,9 @@
-const express = require('express');
-const app = express();
-const cors = require('cors');
-const db = require("./config/database");
-const PORT = process.env.PORT || 4000;
+require("@babel/register")({
+  extensions: [".js"],
+});
 
-//Middlewares JSON use
-app.use(express.json());
+require("@babel/core").transform("code", {
+  presets: ["@babel/preset-env"],
+});
 
-//Cross-origin resource sharing
-app.use(cors());
-
-
-app.listen(process.env.PORT || PORT);
-console.log(`Server on port ${PORT}`);
+require("./src/app");
