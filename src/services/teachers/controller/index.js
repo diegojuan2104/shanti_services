@@ -5,15 +5,15 @@ export default class TeacherController {
   constructor() {
     this.dao = new TeacherDao();
     this.helper = new helpers();
-    this.dataToInsert = {
+    this.dbFields = {
       0: ["id_number"],
       1: ["first_name"],
       2: ["last_name"],
       3: ["email"],
       4: ["phone", 1],
-      5: ["address", 1],
-      6: ["contract", 1],
+      5: ["address", 1]
     };
+    this.nonUpdatingFields = ["id_number"];
   }
 
   async findTeachers() {
@@ -36,27 +36,30 @@ export default class TeacherController {
 
   async createTeacher(params) {
     try {
-      const dataToInsert = this.helper.checkInsertData(
-        this.dataToInsert,
-        params
-      );
-      await this.dao.createTeacher(dataToInsert);
-      return { message: "Register created", data: dataToInsert };
+      const dbFields = this.helper.checkInsertData(this.dbFields, params);
+      await this.dao.createTeacher(dbFields);
+      return { message: "Register created", data: dbFields };
     } catch (error) {
       throw new Error("error while executing createTeacher " + error.message);
     }
   }
 
-  async updateTeacher(params) {
+  async updateTeacher(id, params) {
     try {
-      const dataToInsert = this.helper.checkInsertData(
-        this.dataToInsert,
-        params
+      const [strFields, toUpdate] = this.helper.organizedDataToUpdate(
+        this.dao.dbFields,
+        this.nonUpdatingFields,
+        params,
+        id
       );
-      await this.dao.updateTeacher(dataToInsert);
-      return { message: "Register updated", data: dataToInsert };
+      const rowsUpdated = (await this.dao.updateTeacher(strFields, toUpdate))
+        .rowCount;
+      if (rowsUpdated === 0) return { message: "Register not updated" };
+      return { message: "Register successfully updated" };
     } catch (error) {
-      throw new Error("error while executing updateTeacher " + error.message);
+      throw new Error(
+        "error while executing update subscription " + error.message
+      );
     }
   }
 

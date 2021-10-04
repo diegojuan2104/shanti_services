@@ -3,6 +3,14 @@ import db from "../../../db/database";
 export default class TeacherDao {
   constructor() {
     this.db = new db();
+    this.dbFields = [
+        "id_number",
+        "first_name",
+        "last_name",
+        "email",
+        "phone",
+        "address"
+      ];
   }
 
   findTeachers() {
@@ -21,15 +29,14 @@ export default class TeacherDao {
   createTeacher(params) {
     const sql =
       "insert into teachers(id_number, first_name, \
-        last_name, email, phone, address, contract) \
-        values($1,$2,$3,$4,$5,$6, $7);";
+        last_name, email, phone, address) \
+        values($1,$2,$3,$4,$5,$6);";
     return this.db.executeQuery(sql, params);
   }
 
-  updateTeacher(params) {
-    const sql =
-      "update teachers set first_name = $2, last_name = $3,\
-        email = $4, phone = $5, address = $6, contract = $7 where id_number = $1";
+  updateTeacher(fields, params) {
+    const sql = `update teachers set ${fields} where id_number = $1;`;
+    console.log(sql)
     return this.db.executeQuery(sql, params);
   }
 
