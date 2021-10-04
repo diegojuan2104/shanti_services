@@ -6,12 +6,8 @@ import subcriptionRoutes from "../src/services/subscriptions/routes";
 import schedulesRoutes from "../src/services/schedules/routes";
 import mailRoutes from "../src/services/mail/routes";
 import contractsRoutes from "../src/services/contracts/routes";
-<<<<<<< HEAD
 import userRoutes from "../src/services/users/routes"
 import classesRoutes from "../src/services/classes/routes"
-=======
-import userRoutes from "../src/services/users/routes";
->>>>>>> 924086b99fbb3075a92d81f817bae21e299c3c60
 
 const PORT = process.env.PORT || 4000;
 const app = express();
