@@ -10,7 +10,7 @@ export default class Helpers {
     });
     return arrayData;
   }
-  organizedDataToUpdate(dbFields,nonUpdatingFields,params,id) {
+  organizedDataToUpdate(dbFields, nonUpdatingFields, params, id) {
     let avaliableToUpdate = dbFields.filter(
       (x) => !nonUpdatingFields.includes(x)
     );
@@ -25,6 +25,6 @@ export default class Helpers {
       }
     });
     strFields = strFields.trim().substring(0, strFields.length - 1);
-    return [strFields,toUpdate]
+    return [strFields, toUpdate];
   }
 }

@@ -22,15 +22,19 @@ export default class SubscriptionDao {
     return this.db.executeQuery(sqlQuery, params);
   }
   findById(id) {
-    const sqlQuery = "select * from subscriptions where id = $1";
+    const sqlQuery = "select * from subscriptions where id = $1 and state = 1";
     return this.db.executeQuery(sqlQuery, id);
   }
   findByAll() {
-    const sqlQuery = "select * from subscriptions";
+    const sqlQuery = "select * from subscriptions where state = 1";
     return this.db.executeQuery(sqlQuery);
   }
   update(fields, params) {
-    const sqlQuery = `update subscriptions set ${fields} where id = $1;`;
+    const sqlQuery = `update subscriptions set ${fields} where id = $1 and state != 1;`;
     return this.db.executeQuery(sqlQuery, params);
+  }
+  delete(id) {
+    const sqlQuery = "update subscriptions set state = 0 where id = $1";
+    return this.db.executeQuery(sqlQuery, id);
   }
 }

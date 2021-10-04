@@ -14,7 +14,7 @@ router.post("/", async (req, res, next) => {
 });
 router.get("/:id", async (req, res, next) => {
   try {
-    const {id} = req.params;
+    const { id } = req.params;
     const controller = new SubscriptionController();
     const response = await controller.getSubscription(id);
     res.json(response);
@@ -24,10 +24,20 @@ router.get("/:id", async (req, res, next) => {
 });
 router.put("/:id", async (req, res, next) => {
   try {
-    const {id} = req.params;
+    const { id } = req.params;
     const data = req.body;
     const controller = new SubscriptionController();
-    const response = await controller.updateSubscription(id,data);
+    const response = await controller.updateSubscription(id, data);
+    res.json(response);
+  } catch (error) {
+    res.json({ error: error.message });
+  }
+});
+router.delete("/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const controller = new SubscriptionController();
+    const response = await controller.deleteSubscription(id);
     res.json(response);
   } catch (error) {
     res.json({ error: error.message });
@@ -35,9 +45,8 @@ router.put("/:id", async (req, res, next) => {
 });
 router.get("/", async (req, res, next) => {
   try {
-    const {id} = req.params;
     const controller = new SubscriptionController();
-    const response = await controller.getSubscription(id);
+    const response = await controller.getSubscription();
     res.json(response);
   } catch (error) {
     res.json({ error: error.message });
