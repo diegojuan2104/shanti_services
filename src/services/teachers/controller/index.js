@@ -18,13 +18,8 @@ export default class TeacherController {
 
   async findTeachers() {
     try {
-<<<<<<< HEAD
-      const data = await this.dao.findTeachers( );
-      return { message: "Techers list: ", data };
-=======
       const data = await this.dao.findTeachers();
       return { message: "Consulted data", data: data.rows };
->>>>>>> 319eb04856ea389af97b44dacd04355ac38452ed
     } catch (error) {
       throw new Error("error while executing findTeachers " + error.message);
     }
