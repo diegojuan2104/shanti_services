@@ -14,6 +14,7 @@ export default class SubscriptionController {
     };
     this.nonUpdatingFields = ["id", "date"];
   }
+  //this.daoStudents = new StudentsDao();
 
   async createSubscription(params) {
     try {
@@ -59,3 +60,6 @@ export default class SubscriptionController {
     }
   }
 }
+
+
+

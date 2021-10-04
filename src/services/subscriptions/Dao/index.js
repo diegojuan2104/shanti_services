@@ -32,7 +32,5 @@ export default class SubscriptionDao {
   update(fields, params) {
     const sqlQuery = `update subscriptions set ${fields} where id = $1;`;
     return this.db.executeQuery(sqlQuery, params);
-
-
   }
 }

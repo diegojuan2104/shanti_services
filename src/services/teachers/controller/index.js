@@ -5,7 +5,7 @@ export default class TeacherController {
   constructor() {
     this.dao = new TeacherDao();
     this.helper = new helpers();
-    this.dataToInsert = {
+    this.dbFields = {
       0: ["id_number"],
       1: ["first_name"],
       2: ["last_name"],
@@ -14,6 +14,7 @@ export default class TeacherController {
       5: ["address", 1],
       6: ["contract", 1],
     };
+    this.nonUpdatingFields = ["id_number"];
   }
 
   async findTeachers() {
@@ -36,27 +37,38 @@ export default class TeacherController {
 
   async createTeacher(params) {
     try {
-      const dataToInsert = this.helper.checkInsertData(
-        this.dataToInsert,
+      const dbFields = this.helper.checkInsertData(
+        this.dbFields,
         params
       );
-      await this.dao.createTeacher(dataToInsert);
-      return { message: "Register created", data: dataToInsert };
+      await this.dao.createTeacher(dbFields);
+      return { message: "Register created", data: dbFields };
     } catch (error) {
       throw new Error("error while executing createTeacher " + error.message);
     }
   }
 
-  async updateTeacher(params) {
+  async updateTeacher(id, params) {
     try {
-      const dataToInsert = this.helper.checkInsertData(
-        this.dataToInsert,
-        params
+      let avaliableToUpdate = this.dao.dbFields.filter(
+        (x) => !this.nonUpdatingFields.includes(x)
       );
-      await this.dao.updateTeacher(dataToInsert);
-      return { message: "Register updated", data: dataToInsert };
+      let toUpdate = [id];
+      let strFields = "";
+      let cont = 2;
+      Object.entries(params).forEach(([k, v]) => {
+        if (avaliableToUpdate.includes(k)) {
+          toUpdate.push(v);
+          strFields += `${k} = $${cont},`;
+          cont++;
+        }
+      });
+      strFields = strFields.trim().substring(0, strFields.length - 1);
+      return await this.dao.updateTeacher(strFields, toUpdate);
     } catch (error) {
-      throw new Error("error while executing updateTeacher " + error.message);
+      throw new Error(
+        "error while executing updateTeacher " + error.message
+      ); 
     }
   }
 

@@ -1,18 +1,25 @@
 import express from "express";
 import cors from "cors";
+
 import teachersRoutes from "../src/services/teachers/routes";
 import subcriptionRoutes from "../src/services/subscriptions/routes";
+import schedulesRoutes from "../src/services/schedules/routes";
+
 const PORT = process.env.PORT || 4000;
 const app = express();
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use("/api/v1/service-teachers", teachersRoutes);
-app.use("/api/v1/service-subscription", subcriptionRoutes);
+
+app.use(express.json())
+const URL = "/api/v1/service"
+
+app.use(URL+"-teachers", teachersRoutes);
+app.use(URL+"-subscription", subcriptionRoutes);
+app.use(URL+"-schedules", schedulesRoutes);
 app.use("/", (req, res) => {
   res.status(404).send({
     ok: false,
-    message: "El recurso que busca no existe",
+    message: "Resource not found!",
   });
 });
 process.env.NODE_TLS_REJECT_UNAUTHORIZED='0'
