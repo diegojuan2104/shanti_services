@@ -1,4 +1,4 @@
-import SubscriptionDao from "../Dao";
+import ScheduleDao from "../Dao";
 
 export default class ScheduleController {
   constructor() {
@@ -11,7 +11,18 @@ export default class ScheduleController {
     return { message: "Schedules list:", data };
     }
     catch (error){
-        throw new Error("error while executing exampleFunction " + error.message);
+        throw new Error("error while executing findSchedules " + error.message);
+    }
+  }
+
+
+  async insertSchedules(params) {
+    try {
+    const data = await this.dao.findSchedules(params);
+    return { message: "Schedules list:", data };
+    }
+    catch (error){
+        throw new Error("error while executing findSchedules " + error.message);
     }
   }
 }
