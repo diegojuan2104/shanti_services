@@ -34,7 +34,7 @@ export default class SubscriptionController {
     try {
       let dataToReturn = { message: " operation successfully performed" };
       if (id) dataToReturn["data"] = (await this.dao.findById([id])).rows;
-      else dataToReturn["data"] = await this.dao.findByAll().rows;
+      else dataToReturn["data"] = (await this.dao.findByAll()).rows;
       return dataToReturn;
     } catch (error) {
       throw new Error(
@@ -59,7 +59,15 @@ export default class SubscriptionController {
       );
     }
   }
+  async deleteSubscription(id) {
+    try {
+      const rowsDeleted = (await this.dao.delete([id])).rowCount;
+      if (rowsDeleted === 0) return { message: "not rows deleted " };
+      return { message: " registers successfully deleted " };
+    } catch (error) {
+      throw new Error(
+        "error while executing update subscription " + error.message
+      );
+    }
+  }
 }
-
-
-
