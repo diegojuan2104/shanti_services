@@ -11,8 +11,7 @@ export default class TeacherController {
       2: ["last_name"],
       3: ["email"],
       4: ["phone", 1],
-      5: ["address", 1],
-      6: ["contract", 1],
+      5: ["address", 1]
     };
     this.nonUpdatingFields = ["id_number"];
   }
