@@ -44,7 +44,7 @@ router.put("/:id", async (req, res, next) => {
     const data = req.body;
     const { id } = req.params;
     data.id_number = id;
-    const response = await controller.updateTeacher(data);
+    const response = await controller.updateTeacher(id, data);
     res.json(response);
   } catch (error) {
     res.json({ error: error.message });
