@@ -12,4 +12,5 @@ export default class servicioPG {
     let res = this.pool.query(sql, data);
     return res;
   }
+
 }

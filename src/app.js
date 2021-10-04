@@ -15,6 +15,6 @@ app.use("/", (req, res) => {
     message: "El recurso que busca no existe",
   });
 });
-
+process.env.NODE_TLS_REJECT_UNAUTHORIZED='0'
 app.listen(process.env.PORT || PORT);
 console.log(`Server on port ${PORT}`);
