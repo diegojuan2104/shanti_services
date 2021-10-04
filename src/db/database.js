@@ -1,11 +1,11 @@
 import { Pool } from "pg";
 import dbConf from "../config/index"
-require("dotenv").config({ path: "variables.env" });
 
 
 export default class servicioPG {
   constructor() {
-	const DATAENV = dbConf[process.env.NODE_ENV] || 'development'
+	const DATAENV = dbConf[process.env.NODE_ENV] || dbConf['development']
+    console.log(DATAENV)
     this.pool = new Pool(DATAENV);
   }
 
