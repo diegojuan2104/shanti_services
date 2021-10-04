@@ -7,8 +7,8 @@ const app = express();
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use("/api/v1/teachers", teachersRoutes);
-app.use("/api/v1/subscription", subcriptionRoutes);
+app.use("/api/v1/service-teachers", teachersRoutes);
+app.use("/api/v1/service-subscription", subcriptionRoutes);
 app.use("/", (req, res) => {
   res.status(404).send({
     ok: false,
