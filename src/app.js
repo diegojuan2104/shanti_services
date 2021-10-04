@@ -6,6 +6,7 @@ import subcriptionRoutes from "../src/services/subscriptions/routes";
 import schedulesRoutes from "../src/services/schedules/routes";
 import contractsRoutes from "../src/services/contracts/routes";
 import userRoutes from "../src/services/users/routes"
+import classesRoutes from "../src/services/classes/routes"
 
 const PORT = process.env.PORT || 4000;
 const app = express();
@@ -20,6 +21,7 @@ app.use(URL+"users", userRoutes);
 app.use(URL+"subscription", subcriptionRoutes);
 app.use(URL+"schedules", schedulesRoutes);
 app.use(URL+"contracts", contractsRoutes);
+app.use(URL+"classes", classesRoutes);
 
 app.use("/", (req, res) => {
   res.status(404).send({
