@@ -1,5 +1,6 @@
 import SubscriptionDao from "../Dao";
 import helpers from "../../../helpers";
+import MailService from "../../mail/controller";
 
 export default class SubscriptionController {
   constructor() {
@@ -13,6 +14,7 @@ export default class SubscriptionController {
       4: ["bill_paid"],
     };
     this.nonUpdatingFields = ["id", "date"];
+    this.mailService = new MailService();
   }
   //this.daoStudents = new StudentsDao();
 
@@ -32,6 +34,13 @@ export default class SubscriptionController {
   }
   async getSubscription(id) {
     try {
+//      await this.mailService.sendMailTo(
+//        "example",
+//        { to: "alejandrosuaza.1022@gmail.com", subject: "welcome" },
+//        { name: "pepe", link: "http://example" },
+//        "servicesappemail@gmail.com",
+//        "Thebest123,"
+//      );
       let dataToReturn = { message: " operation successfully performed" };
       if (id) dataToReturn["data"] = (await this.dao.findById([id])).rows;
       else dataToReturn["data"] = (await this.dao.findByAll()).rows;
