@@ -62,7 +62,7 @@ export default class SubscriptionController {
     } catch (error) {
       throw new Error(
         "error while executing update subscription " + error.message
-      ); 
+    ); 
     }
   }
 }

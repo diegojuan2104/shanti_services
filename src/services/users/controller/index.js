@@ -48,30 +48,6 @@ export default class ScheduleController {
     }
   }
 
-  async updateSchedule(id, params) {
-    try {
-      let avaliableToUpdate = this.dao.dbFields.filter(
-        (x) => !this.nonUpdatingFields.includes(x)
-      );
-      let toUpdate = [id];
-      let strFields = "";
-      let cont = 2;
-      Object.entries(params).forEach(([k, v]) => {
-        if (avaliableToUpdate.includes(k)) {
-          toUpdate.push(v);
-          strFields += `${k} = $${cont},`;
-          cont++;
-        }
-      });
-      strFields = strFields.trim().substring(0, strFields.length - 1);
-      return await this.dao.update(strFields, toUpdate);
-    } catch (error) {
-      throw new Error(
-        "error while executing update subscription " + error.message
-    ); 
-    }
-  }
-
   async deleteSchedule(id) {
     try {
       this.dao.delete([id]);
