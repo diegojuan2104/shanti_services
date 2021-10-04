@@ -4,6 +4,7 @@ import cors from "cors";
 import teachersRoutes from "../src/services/teachers/routes";
 import subcriptionRoutes from "../src/services/subscriptions/routes";
 import schedulesRoutes from "../src/services/schedules/routes";
+import contractsRoutes from "../src/services/contracts/routes";
 
 const PORT = process.env.PORT || 4000;
 const app = express();
@@ -16,6 +17,7 @@ const URL = "/api/v1/service"
 app.use(URL+"-teachers", teachersRoutes);
 app.use(URL+"-subscription", subcriptionRoutes);
 app.use(URL+"-schedules", schedulesRoutes);
+app.use(URL+"-contracts", contractsRoutes);
 app.use("/", (req, res) => {
   res.status(404).send({
     ok: false,
