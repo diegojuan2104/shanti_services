@@ -10,11 +10,13 @@ export default class ScheduleController {
       2: ["final_hour"],
       3: ["available"]
     };
+
+    this.nonUpdatingFields = ["id"];
   }
 
   async findSchedules() {
     try {
-      const data = await this.dao.findSchedules();
+      const data = await this.dao.findAll();
       return { message: "Schedules list:", data };
     }
     catch (error) {
@@ -24,22 +26,22 @@ export default class ScheduleController {
 
   async findScheduleById(id) {
     try {
-      const data = await this.dao.findScheduleById(id);
-      return { message: "Schedule:", data };
+      const data = await this.dao.findById([id]);
+      return { message: "Schedule:", data: data.rows };
     }
     catch (error) {
       throw new Error("error while executing findScheduleById " + error.message);
     }
   }
 
-  async insertSchedules(params) {
+  async insertSchedule(params) {
     try {
       const dataToInsert = this.helper.checkInsertData(
         this.dataToInsert,
         params
       );
       console.log(dataToInsert)
-      await this.dao.insertSchedules(dataToInsert);
+      await this.dao.insert(dataToInsert);
       return { message: "Register created" };
     }
     catch (error) {
@@ -48,9 +50,27 @@ export default class ScheduleController {
     }
   }
 
-  async deleteScheduleById(id) {
+  async updateSchedule(id, params) {
     try {
-      this.dao.deleteScheduleById(id);
+      const [strFields, toUpdate] = this.helper.organizedDataToUpdate(
+        this.dao.dbFields,
+        this.nonUpdatingFields,
+        params,
+        id
+      );
+      const rowsUpdated = (await this.dao.update(strFields, toUpdate)).rowCount;
+      if (rowsUpdated === 0) return { message: " register  not updated " };
+      return { message: " register successfully updated " };
+    } catch (error) {
+      throw new Error(
+        "error while executing update subscription " + error.message
+      );
+    }
+  }
+
+  async deleteSchedule(id) {
+    try {
+      this.dao.delete([id]);
       return { message: "Successful delete" };
     }
     catch (error) {

@@ -9,8 +9,7 @@ export default class TeacherDao {
         "last_name",
         "email",
         "phone",
-        "address",
-        "contract",
+        "address"
       ];
   }
 
@@ -30,8 +29,8 @@ export default class TeacherDao {
   createTeacher(params) {
     const sql =
       "insert into teachers(id_number, first_name, \
-        last_name, email, phone, address, contract) \
-        values($1,$2,$3,$4,$5,$6, $7);";
+        last_name, email, phone, address) \
+        values($1,$2,$3,$4,$5,$6);";
     return this.db.executeQuery(sql, params);
   }
 

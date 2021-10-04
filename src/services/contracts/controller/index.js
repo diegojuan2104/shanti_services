@@ -1,50 +1,46 @@
-import TeacherDao from "../Dao";
+import ContractDao from "../Dao";
 import helpers from "../../../helpers";
 
-export default class TeacherController {
+export default class ContractController {
   constructor() {
-    this.dao = new TeacherDao();
+    this.dao = new ContractDao();
     this.helper = new helpers();
     this.dbFields = {
-      0: ["id_number"],
-      1: ["first_name"],
-      2: ["last_name"],
-      3: ["email"],
-      4: ["phone", 1],
-      5: ["address", 1]
+      0: ["id_document"],
+      1: ["id_teacher"]
     };
-    this.nonUpdatingFields = ["id_number"];
+    this.nonUpdatingFields = ["id_teacher"];
   }
 
-  async findTeachers() {
+  async findContracts() {
     try {
-      const data = await this.dao.findTeachers();
+      const data = await this.dao.findContracts();
       return { message: "Consulted data", data: data.rows };
     } catch (error) {
-      throw new Error("error while executing findTeachers " + error.message);
+      throw new Error("error while executing findContracts " + error.message);
     }
   }
 
-  async findTeacher(params) {
+  async findContract(params) {
     try {
-      const data = await this.dao.findTeacher([params]);
+      const data = await this.dao.findContract([params]);
       return { message: "Consulted data", data: data.rows };
     } catch (error) {
-      throw new Error("error while executing findTeacher " + error.message);
+      throw new Error("error while executing findContract " + error.message);
     }
   }
 
-  async createTeacher(params) {
+  async createContract(params) {
     try {
       const dbFields = this.helper.checkInsertData(this.dbFields, params);
-      await this.dao.createTeacher(dbFields);
+      await this.dao.createContract(dbFields);
       return { message: "Register created", data: dbFields };
     } catch (error) {
-      throw new Error("error while executing createTeacher " + error.message);
+      throw new Error("error while executing createContract " + error.message);
     }
   }
 
-  async updateTeacher(id, params) {
+  async updateContract(id, params) {
     try {
       const [strFields, toUpdate] = this.helper.organizedDataToUpdate(
         this.dao.dbFields,
@@ -52,7 +48,7 @@ export default class TeacherController {
         params,
         id
       );
-      const rowsUpdated = (await this.dao.updateTeacher(strFields, toUpdate))
+      const rowsUpdated = (await this.dao.updateContract(strFields, toUpdate))
         .rowCount;
       if (rowsUpdated === 0) return { message: "Register not updated" };
       return { message: "Register successfully updated" };
@@ -63,12 +59,12 @@ export default class TeacherController {
     }
   }
 
-  async deleteTeacher(params) {
+  async deleteContract(params) {
     try {
-      await this.dao.deleteTeacher([params]);
+      await this.dao.deleteContract([params]);
       return { message: "Register deleted", data: params };
     } catch (error) {
-      throw new Error("error while executing deleteTeacher " + error.message);
+      throw new Error("error while executing deleteContract " + error.message);
     }
   }
 }
