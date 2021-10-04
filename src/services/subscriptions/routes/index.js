@@ -9,6 +9,8 @@ router.post("/create-category", async (req, res, next) => {
     const response = await controller.exampleFunction(data);
     res.json(response);
   } catch (error) {
-    return { error: error}
+    res.json({ error: error.message });
   }
 });
+
+export default router;

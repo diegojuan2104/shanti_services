@@ -1,4 +1,4 @@
-export default db = {
+export default { 
   production: {
     user: process.env.USER_NAME_DB,
     host: process.env.HOST_DB,
