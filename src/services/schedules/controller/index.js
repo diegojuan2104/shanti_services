@@ -10,6 +10,8 @@ export default class ScheduleController {
       2: ["final_hour"],
       3: ["available"]
     };
+
+    this.nonUpdatingFields = ["id"];
   }
 
   async findSchedules() {
@@ -32,7 +34,7 @@ export default class ScheduleController {
     }
   }
 
-  async insertSchedules(params) {
+  async insertSchedule(params) {
     try {
       const dataToInsert = this.helper.checkInsertData(
         this.dataToInsert,
@@ -50,25 +52,19 @@ export default class ScheduleController {
 
   async updateSchedule(id, params) {
     try {
-      let avaliableToUpdate = this.dao.dbFields.filter(
-        (x) => !this.nonUpdatingFields.includes(x)
+      const [strFields, toUpdate] = this.helper.organizedDataToUpdate(
+        this.dao.dbFields,
+        this.nonUpdatingFields,
+        params,
+        id
       );
-      let toUpdate = [id];
-      let strFields = "";
-      let cont = 2;
-      Object.entries(params).forEach(([k, v]) => {
-        if (avaliableToUpdate.includes(k)) {
-          toUpdate.push(v);
-          strFields += `${k} = $${cont},`;
-          cont++;
-        }
-      });
-      strFields = strFields.trim().substring(0, strFields.length - 1);
-      return await this.dao.update(strFields, toUpdate);
+      const rowsUpdated = (await this.dao.update(strFields, toUpdate)).rowCount;
+      if (rowsUpdated === 0) return { message: " register  not updated " };
+      return { message: " register successfully updated " };
     } catch (error) {
       throw new Error(
         "error while executing update subscription " + error.message
-    ); 
+      );
     }
   }
 

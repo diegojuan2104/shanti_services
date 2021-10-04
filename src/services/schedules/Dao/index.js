@@ -3,6 +3,14 @@ import db from '../../../db/database'
 export default class ScheduleDao {
     constructor() {
         this.db = new db();
+
+        this.dbFields = [
+            "id",
+            "schedule_day",
+            "initial_hour",
+            "final_hour",
+            "available",
+          ];
     }
 
     findAll() {
@@ -20,9 +28,9 @@ export default class ScheduleDao {
         return this.db.executeQuery(sql, params);
     }
     update(fields, params) {
-        const sqlQuery = `UPDATE schedules SET ${fields} WHERE id = $1;`;
+        const sqlQuery = `update schedules set ${fields} where id = $1;`;
         return this.db.executeQuery(sqlQuery, params);
-    }
+      }
 
     delete(id) {
         console.log(id)
