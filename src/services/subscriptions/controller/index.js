@@ -10,7 +10,7 @@ export default class SubscriptionController {
       1: ["class_id"],
       2: ["number_of_classes_paid"],
       3: ["number_of_classes_remaining"],
-      4: ["bill_paid",1],
+      4: ["bill_paid"],
       5: ["my_date"],
     };
     //this.daoStudents = new StudentsDao();
