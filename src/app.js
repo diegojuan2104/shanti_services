@@ -1,8 +1,9 @@
 import express from 'express';
 const app = express();
 import cors from 'cors';
+require("dotenv").config({ path: ".env" });
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT;
 
 //Middlewares JSON use
 app.use(express.json());
