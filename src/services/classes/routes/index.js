@@ -2,6 +2,11 @@ import Express from "express";
 import ClassesController from "../controller";
 const router = Express.Router();
 
+
+/**
+ * Available Classes 
+ * @returns  all the available classes of the school
+ */
 router.get("/", async (req, res, next) => {
   try {
     const controller = new ClassesController();
@@ -14,7 +19,11 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-
+/**
+ * Schedule info
+ * @params {String} id
+ * @returns info of a specific class 
+ */
 router.get("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -28,7 +37,11 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
-
+/**
+ * Class creation
+ * @returns creates a class
+ * @params {Object} Class
+ */
 router.post("/", async (req, res, next) => {
   try {
     const data = req.body;
@@ -40,6 +53,11 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+/**
+ * Class update
+ * @returns updates a class
+ * @params {Object} Class
+ */
 router.put("/:id", async (req, res, next) => {
   try {
     const {id} = req.params;
@@ -52,6 +70,11 @@ router.put("/:id", async (req, res, next) => {
   }
 });
 
+/**
+ * Class delete
+ * @returns deletes a class
+ * @params {Object} Class
+ */
 router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;

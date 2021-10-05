@@ -14,6 +14,13 @@ export default class ClassController {
     this.nonUpdatingFields = ["id"];
   }
 
+  /**
+   * 
+   * 
+   * @returns class
+   * 
+   * @memberOf ClassController
+   */
   async findClasses() {
     try {
       const data = await this.dao.findAll();
@@ -24,6 +31,13 @@ export default class ClassController {
     }
   }
 
+  /**
+   * 
+   * @param {String} id 
+   * @returns 
+   * 
+   * @memberOf ClassController
+   */
   async findClassById(id) {
     try {
       const data = await this.dao.findById([id]);
@@ -34,6 +48,13 @@ export default class ClassController {
     }
   }
 
+  /**
+   * 
+   * @param {Object} params 
+   * @returns class inserted
+   * 
+   * @memberOf ClassController
+   */
   async insertClass(params) {
     try {
       const dataToInsert = this.helper.checkInsertData(
@@ -50,6 +71,13 @@ export default class ClassController {
     }
   }
 
+  /**
+   * @param {String} id 
+   * @param {Object} params 
+   * @returns class updated 
+   * 
+   * @memberOf ClassController
+   */
   async updateClass(id, params) {
     try {
       const [strFields, toUpdate] = this.helper.organizedDataToUpdate(
@@ -68,6 +96,13 @@ export default class ClassController {
     }
   }
 
+  /**
+   * 
+   * @param {String} id 
+   * @returns class deleted
+   * 
+   * @memberOf ClassController
+   */
   async deleteClass(id) {
     try {
       this.dao.delete([id]);

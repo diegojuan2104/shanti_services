@@ -12,24 +12,37 @@ export default class ClassDao {
         ];
     }
 
+    /**
+     * @returns query
+     * 
+     * @memberOf ClassDao
+     */
     findAll() {
         return this.db.executeQuery(`SELECT classes.id,class_name,teacher_id, schedule_id,aditional_information, 
         CONCAT(teachers.first_name,' ',teachers.last_name) as teacher, schedules.schedule_day as day, 
         CONCAT(schedules.initial_hour,' - ',schedules.final_hour) as hour
         FROM classes 
-        LEFT JOIN teachers ON classes.teacher_id = teachers.id 
-        LEFT JOIN schedules ON classes.schedule_id = schedules.id 
+        INNER JOIN teachers ON classes.teacher_id = teachers.id 
+        INNER JOIN schedules ON classes.schedule_id = schedules.id 
         WHERE classes.status != 0;`);
     }
 
+    /**
+     * 
+     * 
+     * @param {String} id 
+     * @returns query
+     * 
+     * @memberOf ClassDao
+     */
     findById(id) {
         console.log(id)
         const sql = `SELECT classes.id,class_name,teacher_id, schedule_id,aditional_information, 
         CONCAT(teachers.first_name,' ',teachers.last_name) as teacher, schedules.schedule_day as day, 
         CONCAT(schedules.initial_hour,' - ',schedules.final_hour) as hour
         FROM classes 
-        LEFT JOIN teachers ON classes.teacher_id = teachers.id 
-        LEFT JOIN schedules ON classes.schedule_id = schedules.id 
+        INNER JOIN teachers ON classes.teacher_id = teachers.id 
+        INNER JOIN schedules ON classes.schedule_id = schedules.id 
         WHERE classes.id = $1 AND classes.status != 0;`;
         return this.db.executeQuery(sql, id);
     }

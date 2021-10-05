@@ -2,6 +2,12 @@ import Express from "express";
 import UsersController from "../controller";
 const router = Express.Router();
 
+
+
+/**
+ * Available users 
+ * @returns  All the available users for the classes
+ */
 router.get("/", async (req, res, next) => {
   try {
     const controller = new UsersController();
@@ -15,6 +21,11 @@ router.get("/", async (req, res, next) => {
 });
 
 
+/**
+ * Users info
+ * @params {String} id
+ * @returns info of a specific user 
+ */
 router.get("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -28,7 +39,11 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
-
+/**
+ * User creation
+ * @returns user created
+ * @params {Object} User
+ */
 router.post("/", async (req, res, next) => {
   try {
     const data = req.body;
@@ -40,6 +55,12 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+
+/**
+ * User update
+ * @returns user updated
+ * @params {Object} User
+ */
 router.put("/:id", async (req, res, next) => {
   try {
     const {id} = req.params;
@@ -52,6 +73,12 @@ router.put("/:id", async (req, res, next) => {
   }
 });
 
+
+/**
+ * User delete
+ * @returns user deleted
+ * @params {String} id
+ */
 router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
