@@ -8,7 +8,6 @@ export default class servicioCorreo {
     this.password = process.env.SERVER_MAIL_PASSWORD;
   }
   /**
-   *
    * @param {String} templateName name of the template to send
    * @param {Object} dataMail to who and subject
    * @param {object} data to send to the template

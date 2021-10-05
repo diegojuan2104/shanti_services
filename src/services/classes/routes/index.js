@@ -1,17 +1,16 @@
 import Express from "express";
-import UsersController from "../controller";
+import ClassesController from "../controller";
 const router = Express.Router();
 
 
-
 /**
- * Available users 
- * @returns  All the available users for the classes
+ * Available Classes 
+ * @returns  all the available classes of the school
  */
 router.get("/", async (req, res, next) => {
   try {
-    const controller = new UsersController();
-    const response = await controller.findUsers();
+    const controller = new ClassesController();
+    const response = await controller.findClasses();
     res.json(response);
   } catch (error) {
     res.status(400).json({
@@ -20,17 +19,16 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-
 /**
- * Users info
+ * Schedule info
  * @params {String} id
- * @returns info of a specific user 
+ * @returns info of a specific class 
  */
 router.get("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
-    const controller = new UsersController(id);
-    const response = await controller.findUserById(id);
+    const controller = new ClassesController(id);
+    const response = await controller.findClassById(id);
     res.json(response);
   } catch (error) {
     res.status(400).json({
@@ -40,50 +38,48 @@ router.get("/:id", async (req, res, next) => {
 });
 
 /**
- * User creation
- * @returns user created
- * @params {Object} User
+ * Class creation
+ * @returns creates a class
+ * @params {Object} Class
  */
 router.post("/", async (req, res, next) => {
   try {
     const data = req.body;
-    const controller = new UsersController();
-    const response = await controller.insertUser(data);
+    const controller = new ClassesController();
+    const response = await controller.insertClass(data);
     res.json(response);
   } catch (error) {
     res.json({ error: error.message });
   }
 });
 
-
 /**
- * User update
- * @returns user updated
- * @params {Object} User
+ * Class update
+ * @returns updates a class
+ * @params {Object} Class
  */
 router.put("/:id", async (req, res, next) => {
   try {
     const {id} = req.params;
     const data = req.body;
-    const controller = new UsersController();
-    const response = await controller.updateUser(id,data);
+    const controller = new ClassesController();
+    const response = await controller.updateClass(id,data);
     res.json(response);
   } catch (error) {
     res.json({ error: error.message });
   }
 });
 
-
 /**
- * User delete
- * @returns user deleted
- * @params {String} id
+ * Class delete
+ * @returns deletes a class
+ * @params {Object} Class
  */
 router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const controller = new UsersController();
-    const response = await controller.deleteUser(id);
+    const controller = new ClassesController();
+    const response = await controller.deleteClass(id);
     res.json(response);
   } catch (error) {
     res.status(400).json({
