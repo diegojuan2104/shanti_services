@@ -12,7 +12,7 @@ router.get("/", async (req, res, next) => {
   try {
     const controller = new UsersController();
     const response = await controller.findUsers();
-    res.json(response);
+    res.status(200).json(response);
   } catch (error) {
     res.status(400).json({
       message: error.message
@@ -31,7 +31,7 @@ router.get("/:id", async (req, res, next) => {
     const { id } = req.params;
     const controller = new UsersController(id);
     const response = await controller.findUserById(id);
-    res.json(response);
+    res.status(200).json(response);
   } catch (error) {
     res.status(400).json({
       message: error.message
@@ -49,9 +49,11 @@ router.post("/", async (req, res, next) => {
     const data = req.body;
     const controller = new UsersController();
     const response = await controller.insertUser(data);
-    res.json(response);
+    res.status(200).json(response);
   } catch (error) {
-    res.json({ error: error.message });
+    res.status(400).json({
+      message: error.message
+    })
   }
 });
 
@@ -67,9 +69,11 @@ router.put("/:id", async (req, res, next) => {
     const data = req.body;
     const controller = new UsersController();
     const response = await controller.updateUser(id,data);
-    res.json(response);
+    res.status(200).json(response);
   } catch (error) {
-    res.json({ error: error.message });
+    res.status(400).json({
+      message: error.message
+    })
   }
 });
 
