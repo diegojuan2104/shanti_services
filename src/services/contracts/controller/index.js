@@ -11,7 +11,10 @@ export default class ContractController {
     };
     this.nonUpdatingFields = ["id_teacher"];
   }
-
+  /**
+   * Method that finds all the contracts
+   * @returns json with a message and a list with all the contracts
+   */
   async findContracts() {
     try {
       const data = await this.dao.findContracts();
@@ -21,6 +24,11 @@ export default class ContractController {
     }
   }
 
+  /**
+   * Method that finds a contract
+   * @param {*} params receive a teacher ID
+   * @returns json with a message and the found contract
+   */
   async findContract(params) {
     try {
       const data = await this.dao.findContract([params]);
@@ -30,6 +38,11 @@ export default class ContractController {
     }
   }
 
+  /**
+   * Method that create a contract
+   * @param {*} params receive a contract information
+   * @returns json with a message and data agregated
+   */
   async createContract(params) {
     try {
       const dbFields = this.helper.checkInsertData(this.dbFields, params);
@@ -40,6 +53,12 @@ export default class ContractController {
     }
   }
 
+  /**
+   * Method that updates a contract
+   * @param {*} id receive a teacher ID
+   * @param {*} params receive the fields to update
+   * @returns Json with a result message
+   */
   async updateContract(id, params) {
     try {
       const [strFields, toUpdate] = this.helper.organizedDataToUpdate(
@@ -59,6 +78,11 @@ export default class ContractController {
     }
   }
 
+  /**
+   * Methos that delete a contract
+   * @param {*} params 
+   * @returns Json with a result message
+   */
   async deleteContract(params) {
     try {
       await this.dao.deleteContract([params]);

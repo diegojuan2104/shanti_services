@@ -16,6 +16,10 @@ export default class TeacherController {
     this.nonUpdatingFields = ["id_number"];
   }
 
+  /**
+   * Method that finds all the teachers
+   * @returns json with a message and a list with all the teachers
+   */
   async findTeachers() {
     try {
       const data = await this.dao.findTeachers();
@@ -25,6 +29,11 @@ export default class TeacherController {
     }
   }
 
+  /**
+   * Method that finds a teacher
+   * @param {*} params receive a teacher ID
+   * @returns json with a message and the found teacher
+   */
   async findTeacher(params) {
     try {
       const data = await this.dao.findTeacher([params]);
@@ -34,6 +43,11 @@ export default class TeacherController {
     }
   }
 
+  /**
+   * Method that create a teacher
+   * @param {*} params receive a teacher information
+   * @returns json with a message and data agregated
+   */
   async createTeacher(params) {
     try {
       const dbFields = this.helper.checkInsertData(this.dbFields, params);
@@ -43,7 +57,13 @@ export default class TeacherController {
       throw new Error("error while executing createTeacher " + error.message);
     }
   }
-
+  
+  /**
+   * Method that updates a teacher
+   * @param {*} id receive a teacher ID
+   * @param {*} params receive the fields to update
+   * @returns Json with a result message
+   */
   async updateTeacher(id, params) {
     try {
       const [strFields, toUpdate] = this.helper.organizedDataToUpdate(
@@ -63,6 +83,11 @@ export default class TeacherController {
     }
   }
 
+  /**
+   * Methos that delete a teacher
+   * @param {*} params 
+   * @returns Json with a result message
+   */
   async deleteTeacher(params) {
     try {
       await this.dao.deleteTeacher([params]);
