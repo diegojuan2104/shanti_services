@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: helpers/index.js</title>
+    <title>JSDoc: Source: services/teachers/Dao/index.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: helpers/index.js</h1>
+    <h1 class="page-title">Source: services/teachers/Dao/index.js</h1>
 
     
 
@@ -26,48 +26,73 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>export default class Helpers {
-  constructor() {}
-  /**
-   * 
-   * @param {Object} dataToInsert data requiredto insert into the db
-   * @param {Object} data to verify to insert into the db
-   * @returns Array of object to insert into the db
-   */
-  checkInsertData(dataToInsert, data) {
-    let arrayData = [];
-    Object.entries(dataToInsert).forEach(([k, v]) => {
-      const dataValue = data[v[0]];
-      if (!dataValue &amp;&amp; !dataToInsert[k][1])
-        throw new Error("param required " + v + " not existing");
-      arrayData.splice(k, 0, data[v[0]]);
-    });
-    return arrayData;
+            <pre class="prettyprint source linenums"><code>import db from "../../../db/database";
+
+export default class TeacherDao {
+  constructor() {
+    this.db = new db();
+    this.dbFields = [
+        "id_number",
+        "first_name",
+        "last_name",
+        "email",
+        "phone",
+        "address"
+      ];
   }
+
   /**
-   * 
-   * @param {Array} dbFields fields of the table into the db 
-   * @param {Array} nonUpdatingFields  
-   * @param {Object} params data to verify to update the register into the db
-   * @param {UUID} id register to update 
-   * @returns Array with the data allowed to be updated
+   * @returns the status of the current db operation
    */
-  organizedDataToUpdate(dbFields, nonUpdatingFields, params, id) {
-    let avaliableToUpdate = dbFields.filter(
-      (x) => !nonUpdatingFields.includes(x)
+  findTeachers() {
+    return this.db.executeQuery(
+      "select * from teachers where status = 1"
     );
-    let toUpdate = [id];
-    let strFields = "";
-    let cont = 2;
-    Object.entries(params).forEach(([k, v]) => {
-      if (avaliableToUpdate.includes(k)) {
-        toUpdate.push(v);
-        strFields += `${k} = $${cont},`;
-        cont++;
-      }
-    });
-    strFields = strFields.trim().substring(0, strFields.length - 1);
-    return [strFields, toUpdate];
+  }
+
+  /**
+   * @param { String } id_number
+   * @returns the status of the current db operation
+   */
+  findTeacher(params) {
+    return this.db.executeQuery(
+      "select * from teachers where id_number = $1 and status = 1",
+      params
+    );
+  }
+
+  /**
+   * Recive an array of data to insert to the database.
+   * @param {Array} params 
+   * @returns the status of the current db operation
+   */
+  createTeacher(params) {
+    const sql =
+      "insert into teachers(id_number, first_name, \
+        last_name, email, phone, address) \
+        values($1,$2,$3,$4,$5,$6);";
+    return this.db.executeQuery(sql, params);
+  }
+
+  /**
+   * @param {String} fields to update
+   * @param {Array} params 
+   * @returns the status of the current db operation 
+   */
+  updateTeacher(fields, params) {
+    const sql = `update teachers set ${fields} where id_number = $1;`;
+    console.log(sql)
+    return this.db.executeQuery(sql, params);
+  }
+
+  /**
+   * @param {String} id_number 
+   * @returns the status of the current db operation
+   */
+  deleteTeacher(params) {
+    const sql =
+      "update teachers set status = 0 where id_number = $1";
+    return this.db.executeQuery(sql, params);
   }
 }
 </code></pre>
