@@ -1,0 +1,868 @@
+{
+	"info": {
+		"_postman_id": "d7f7b8da-2747-4697-a42a-57eff2b6dbd9",
+		"name": "Services",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Teachers",
+			"item": [
+				{
+					"name": "Find all teachers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/service-teachers/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"service-teachers",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find teacher",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/service-teachers/test",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"service-teachers",
+								"test"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete teacher",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/service-teachers/test",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"service-teachers",
+								"test"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create teacher",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id_number\": \"123456\",\n    \"first_name\": \"Sapo\",\n    \"last_name\": \"Perro\",\n    \"email\": \"sapo_perro@gmail.com\",\n    \"phone\": \"123456\",\n    \"address\": \"la veracruz\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/service-teachers/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"service-teachers",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update teacher",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone\": \"555555\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/service-teachers/123456",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"service-teachers",
+								"123456"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Contracts",
+			"item": [
+				{
+					"name": "Find all contracts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/service-contracts/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"service-contracts",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find contract",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/service-contracts/test",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"service-contracts",
+								"test"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete contract",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/service-contracts/test",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"service-contracts",
+								"test"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create contract",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id_teacher\": \"123456\",\n    \"id_document\": \"lkjhgvtcvftybgu.pdf\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/service-contracts/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"service-contracts",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update contract",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id_document\": \"hola.pdf\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/service-contracts/123456",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"service-contracts",
+								"123456"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "service-users",
+			"item": [
+				{
+					"name": "user",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/service-users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"service-users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user/:id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/service-users/adaee62f-8ac3-4beb-9163-00dddce162c4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"service-users",
+								"adaee62f-8ac3-4beb-9163-00dddce162c4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\":\"Alejandro\",\r\n    \"last_name\": \"Suaza\",\r\n    \"phone\":\"3206116790\",\r\n    \"address\": \"Calle 10 #22E-1\",\r\n    \"email\":\"suaza@gmail.com\",\r\n    \"doc_number\":\"1110415196\",\r\n    \"aditional_information\":\"Muy interesado en hacer todos los cursos\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/service-users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"service-users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/service-users/adaee62f-8ac3-4beb-9163-00dddce162c4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"service-users",
+								"adaee62f-8ac3-4beb-9163-00dddce162c4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user/:id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\":\"Alejandro\",\r\n    \"last_name\": \"Builes\",\r\n    \"phone\":\"3206116790\",\r\n    \"address\": \"Calle 10 #22E-1\",\r\n    \"email\":\"suaza@gmail.com\",\r\n    \"doc_number\":\"1110415196\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/service-users/adaee62f-8ac3-4beb-9163-00dddce162c4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"service-users",
+								"adaee62f-8ac3-4beb-9163-00dddce162c4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "service-classes",
+			"item": [
+				{
+					"name": "class",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/service-classes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"service-classes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "class/:id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/service-classes/3d875e69-a827-41a5-b4db-eb2db7a16803",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"service-classes",
+								"3d875e69-a827-41a5-b4db-eb2db7a16803"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "class",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"class_name\":\"Yoga Basico\",\r\n    \"teacher_id\": \"537d9d74-4562-40a8-885c-a0484c91be61\",\r\n    \"schedule_id\":\"d4d2e3a1-c9c1-4856-902f-c1e7c310dc5d\",\r\n    \"aditional_information\":\"Clase para principiantes\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/service-classes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"service-classes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "class/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/service-classes/3d875e69-a827-41a5-b4db-eb2db7a16803",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"service-classes",
+								"3d875e69-a827-41a5-b4db-eb2db7a16803"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "class/:id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"class_name\":\"Yoga Basico\",\r\n    \"teacher_id\": \"537d9d74-4562-40a8-885c-a0484c91be61\",\r\n    \"schedule_id\":\"d4d2e3a1-c9c1-4856-902f-c1e7c310dc5d\",\r\n    \"aditional_information\":\"Clase para principiantes2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/service-classes/3d875e69-a827-41a5-b4db-eb2db7a16803",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"service-classes",
+								"3d875e69-a827-41a5-b4db-eb2db7a16803"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "service-schedules",
+			"item": [
+				{
+					"name": "schedule",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/service-schedules/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"service-schedules",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "schedule/:id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/service-schedules/d4d2e3a1-c9c1-4856-902f-c1e7c310dc5d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"service-schedules",
+								"d4d2e3a1-c9c1-4856-902f-c1e7c310dc5d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "schedule",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"schedule_day\":\"Lunes\",\r\n    \"initial_hour\": \"1:00\",\r\n    \"final_hour\":\"3:00\",\r\n    \"available\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/service-schedules",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"service-schedules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "schedule/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/service-schedules/d4d2e3a1-c9c1-4856-902f-c1e7c310dc5d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"service-schedules",
+								"d4d2e3a1-c9c1-4856-902f-c1e7c310dc5d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "schedule/:id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"initial_hour\": \"2:00\",\r\n    \"final_hour\":\"3:00\",\r\n    \"available\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/service-schedules/dde4fd71-bda1-4f29-8062-5e6bdd1758c3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"service-schedules",
+								"dde4fd71-bda1-4f29-8062-5e6bdd1758c3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Subscriptions",
+			"item": [
+				{
+					"name": "get  subscriptions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/service-subscription/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"service-subscription",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update subscription",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bill_paid\": 40000,\n    \"user_id\":\"3fb4a54e-24b7-11ec-bd43-0e0d2900fcaf\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/service-subscription/edbb210d-5ea0-4564-ada1-d49c99798ffb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"service-subscription",
+								"edbb210d-5ea0-4564-ada1-d49c99798ffb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete subscrition",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/service-subscription/edbb210d-5ea0-4564-ada1-d49c99798ffb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"service-subscription",
+								"edbb210d-5ea0-4564-ada1-d49c99798ffb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get subscription",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/service-subscription/edbb210d-5ea0-4564-ada1-d49c99798ffb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"service-subscription",
+								"edbb210d-5ea0-4564-ada1-d49c99798ffb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create subscriptions",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": \"edbb210d-5ea0-4564-ada1-d49c99798ffb\",\n    \"class_id\": \"5dcde536-2591-11ec-b20a-0e0d2900fcaf\",\n    \"number_of_classes_paid\": 5,\n    \"number_of_classes_remaining\": 2,\n    \"bill_paid\": 200000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/service-subscription",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"service-subscription"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notifications",
+			"item": [
+				{
+					"name": "service-mail",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"templateName\": \"example\",\n    \"dataMail\": {\n        \"to\": \"alejandrosuaza.1022@gmail.com\",\n        \"subject\": \"welcome\"\n    },\n    \"dataTemplate\": {\n        \"name\": \"pepe\",\n        \"link\": \"http://example\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/service-mail",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"service-mail"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
