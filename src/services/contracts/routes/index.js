@@ -1,7 +1,9 @@
 import Express from "express";
 import ContractController from "../controller";
 const router = Express.Router();
-
+/**
+ * Route to get all contracts
+ */
 router.get("/", async (req, res, next) => {
   try {
     const controller = new ContractController();
@@ -14,6 +16,9 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+/**
+ * Route to get a contract
+ */
 router.get("/:id", async (req, res, next) => {
   try {
     const controller = new ContractController();
@@ -27,6 +32,9 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
+/**
+ * Route to create a contract
+ */
 router.post("/", async (req, res, next) => {
   try {
     const data = req.body;
@@ -38,6 +46,9 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+/**
+ * Route to update a contract
+ */
 router.put("/:id", async (req, res, next) => {
   try {
     const controller = new ContractController();
@@ -51,6 +62,9 @@ router.put("/:id", async (req, res, next) => {
   }
 });
 
+/**
+ * Route to delete a contract
+ */
 router.delete("/:id", async (req, res, next) => {
   try {
     const controller = new ContractController();

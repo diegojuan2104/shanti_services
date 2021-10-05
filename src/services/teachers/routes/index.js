@@ -2,6 +2,9 @@ import Express from "express";
 import TeacherController from "../controller";
 const router = Express.Router();
 
+/**
+ * Route to get all teachers
+ */
 router.get("/", async (req, res, next) => {
   try {
     const controller = new TeacherController();
@@ -14,6 +17,9 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+/**
+ * Route to get a teacher
+ */
 router.get("/:id", async (req, res, next) => {
   try {
     const controller = new TeacherController();
@@ -27,6 +33,9 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
+/**
+ * Route to create a teacher
+ */
 router.post("/", async (req, res, next) => {
   try {
     const data = req.body;
@@ -38,6 +47,9 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+/**
+ * Route to update a teacher
+ */
 router.put("/:id", async (req, res, next) => {
   try {
     const controller = new TeacherController();
@@ -51,6 +63,9 @@ router.put("/:id", async (req, res, next) => {
   }
 });
 
+/**
+ * Route to delete a teacher
+ */
 router.delete("/:id", async (req, res, next) => {
   try {
     const controller = new TeacherController();

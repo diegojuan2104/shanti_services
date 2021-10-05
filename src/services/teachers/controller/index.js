@@ -18,7 +18,7 @@ export default class TeacherController {
 
   /**
    * Method that finds all the teachers
-   * @returns json with a message and a list with all the teachers
+   * @returns {Object} with a message and a list with all the teachers
    */
   async findTeachers() {
     try {
@@ -31,8 +31,8 @@ export default class TeacherController {
 
   /**
    * Method that finds a teacher
-   * @param {*} params receive a teacher ID
-   * @returns json with a message and the found teacher
+   * @param {String} params receive a teacher ID
+   * @returns {Object} with a message and the found teacher
    */
   async findTeacher(params) {
     try {
@@ -45,8 +45,8 @@ export default class TeacherController {
 
   /**
    * Method that create a teacher
-   * @param {*} params receive a teacher information
-   * @returns json with a message and data agregated
+   * @param {Object} params receive a teacher information
+   * @returns {Object} with a message and data agregated
    */
   async createTeacher(params) {
     try {
@@ -60,9 +60,9 @@ export default class TeacherController {
   
   /**
    * Method that updates a teacher
-   * @param {*} id receive a teacher ID
-   * @param {*} params receive the fields to update
-   * @returns Json with a result message
+   * @param {String} id receive a teacher ID
+   * @param {Object} params receive the fields to update
+   * @returns {Object} with a result message
    */
   async updateTeacher(id, params) {
     try {
@@ -85,8 +85,8 @@ export default class TeacherController {
 
   /**
    * Methos that delete a teacher
-   * @param {*} params 
-   * @returns Json with a result message
+   * @param {String} params 
+   * @returns {Object} with a result message
    */
   async deleteTeacher(params) {
     try {
