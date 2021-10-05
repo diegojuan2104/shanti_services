@@ -2,6 +2,11 @@ import Express from "express";
 import SchedulesController from "../controller";
 const router = Express.Router();
 
+
+/**
+ * Available Schedules 
+ * @returns  All the available schedules for the classes
+ */
 router.get("/", async (req, res, next) => {
   try {
     const controller = new SchedulesController();
@@ -14,7 +19,11 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-
+/**
+ * Schedule info
+ * @params {String} id
+ * @returns info of a specific schedule 
+ */
 router.get("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -29,6 +38,11 @@ router.get("/:id", async (req, res, next) => {
 });
 
 
+/**
+ * Schedule creation
+ * @returns creates a schedule
+ * @body {String} schedule_day, {String} initial_hour,{String} final_hour, {Bool} available
+ */
 router.post("/", async (req, res, next) => {
   try {
     const data = req.body;
@@ -40,6 +54,13 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+
+/**
+ * Schedule update, must enter at least one element in the body to be updated
+ * @params {String} id
+ * @returns updates a schedule
+ * @body {String} schedule_day, {String} initial_hour,{String} final_hour, {Bool} available
+ */
 router.put("/:id", async (req, res, next) => {
   try {
     const {id} = req.params;
@@ -52,6 +73,11 @@ router.put("/:id", async (req, res, next) => {
   }
 });
 
+/**
+ * Schedule delete
+ * @params {String} id
+ * @returns deletes a schedule
+ */
 router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
