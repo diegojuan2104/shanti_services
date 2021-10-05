@@ -34,7 +34,7 @@ export default class ClassController {
   /**
    * 
    * @param {String} id 
-   * @returns 
+   * @returns a specific class
    * 
    * @memberOf ClassController
    */

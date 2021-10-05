@@ -1,5 +1,11 @@
 export default class Helpers {
   constructor() {}
+  /**
+   * 
+   * @param {Object} dataToInsert data requiredto insert into the db
+   * @param {Object} data to verify to insert into the db
+   * @returns Array of object to insert into the db
+   */
   checkInsertData(dataToInsert, data) {
     let arrayData = [];
     Object.entries(dataToInsert).forEach(([k, v]) => {
@@ -10,6 +16,14 @@ export default class Helpers {
     });
     return arrayData;
   }
+  /**
+   * 
+   * @param {Array} dbFields fields of the table into the db 
+   * @param {Array} nonUpdatingFields  
+   * @param {Object} params data to verify to update the register into the db
+   * @param {UUID} id register to update 
+   * @returns Array with the data allowed to be updated
+   */
   organizedDataToUpdate(dbFields, nonUpdatingFields, params, id) {
     let avaliableToUpdate = dbFields.filter(
       (x) => !nonUpdatingFields.includes(x)

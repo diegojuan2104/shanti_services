@@ -13,7 +13,8 @@ export default class ScheduleDao {
     }
 
     /**
-     * @returns 
+     * @returns  the status of the current db operation
+     * 
      * 
      * @memberOf ScheduleDao
      */
@@ -24,7 +25,7 @@ export default class ScheduleDao {
     /**
      * 
      * @param {String} id 
-     * @returns 
+     * @returns the status of the current db operation
      * 
      * @memberOf ScheduleDao
      */
@@ -37,7 +38,7 @@ export default class ScheduleDao {
     /**
      * 
      * @param {Object} params 
-     * @returns 
+     * @returns the status of the current db operation
      * @memberOf ScheduleDao
      */
     insert(params) {
@@ -48,7 +49,7 @@ export default class ScheduleDao {
      * 
      * @param {List} fields 
      * @param {Object} params 
-     * @returns 
+     * @returns the status of the current db operation
      * @memberOf ScheduleDao
      */
     update(fields, params) {
@@ -58,7 +59,7 @@ export default class ScheduleDao {
 
     /**
      * @param {String} id 
-     * @returns 
+     * @returns the status of the current db operation
      * @memberOf ScheduleDao
      */
     delete(id) {
