@@ -18,9 +18,9 @@ export default class SubscriptionController {
   }
   /**
    *
-   * @param {Object} body of the post request
-   * @param {Object.}
-   * @returns
+   * @param {{String:user_id, String:class_id, String:number_of_classes_paid, String:number_of_classes_remaining, String: bill_paid}} params body of the post request
+   *
+   * @returns Number of register created
    */
   async createSubscription(params) {
     try {
@@ -36,6 +36,11 @@ export default class SubscriptionController {
       );
     }
   }
+  /**
+   * 
+   * @param {UUID} id 
+   * @returns return the data asked to the database
+   */
   async getSubscription(id) {
     try {
       //      await this.mailService.sendMailTo(
@@ -55,6 +60,12 @@ export default class SubscriptionController {
       );
     }
   }
+  /**
+   * 
+   * @param {UUID} id 
+   * @param {Object} params data fields to update  
+   * @returns number of rows affected
+   */
   async updateSubscription(id, params) {
     try {
       const [strFields, toUpdate] = this.helper.organizedDataToUpdate(
@@ -72,6 +83,11 @@ export default class SubscriptionController {
       );
     }
   }
+  /**
+   * 
+   * @param {UUID} id 
+   * @returns number of rows deleted
+   */
   async deleteSubscription(id) {
     try {
       const rowsDeleted = (await this.dao.delete([id])).rowCount;

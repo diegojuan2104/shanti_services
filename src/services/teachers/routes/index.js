@@ -8,7 +8,7 @@ router.get("/", async (req, res, next) => {
     const response = await controller.findTeachers();
     res.json(response);
   } catch (error) {
-    res.status(400).json({
+    res.status(500).json({
       message: error.message
     })
   }
@@ -21,7 +21,7 @@ router.get("/:id", async (req, res, next) => {
     const response = await controller.findTeacher(id);
     res.json(response);
   } catch (error) {
-    res.status(400).json({
+    res.status(500).json({
       message: error.message
     })
   }
@@ -34,7 +34,7 @@ router.post("/", async (req, res, next) => {
     const response = await controller.createTeacher(data);
     res.json(response);
   } catch (error) {
-    res.json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 });
 
@@ -47,7 +47,7 @@ router.put("/:id", async (req, res, next) => {
     const response = await controller.updateTeacher(id, data);
     res.json(response);
   } catch (error) {
-    res.json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 });
 
@@ -58,7 +58,7 @@ router.delete("/:id", async (req, res, next) => {
     const response = await controller.deleteTeacher(id);
     res.json(response);
   } catch (error) {
-    res.status(400).json({
+    res.status(500).json({
       message: error.message
     })
   }
