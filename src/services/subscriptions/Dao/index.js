@@ -19,6 +19,7 @@ export default class SubscriptionDao {
       "insert into subscriptions(user_id, class_id, \
             number_of_classes_paid, number_of_classes_remaining, bill_paid)  \
         values($1,$2,$3,$4,$5);";
+    console.log(params);
     return this.db.executeQuery(sqlQuery, params);
   }
   findById(id) {

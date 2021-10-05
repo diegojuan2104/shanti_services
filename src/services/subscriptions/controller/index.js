@@ -16,16 +16,20 @@ export default class SubscriptionController {
     this.nonUpdatingFields = ["id", "date"];
     this.mailService = new MailService();
   }
-  //this.daoStudents = new StudentsDao();
-
+  /**
+   *
+   * @param {Object} body of the post request
+   * @param {Object.}
+   * @returns
+   */
   async createSubscription(params) {
     try {
       const dataToInsert = this.helper.checkInsertData(
         this.dataToInsert,
         params
       );
-      const data = await this.dao.create(dataToInsert);
-      return { message: "register created", data };
+      const data = (await this.dao.create(dataToInsert)).rowCount;
+      return { message: "register created", registersCreated: rowCount };
     } catch (error) {
       throw new Error(
         "error while executing create subscription " + error.message
@@ -34,13 +38,13 @@ export default class SubscriptionController {
   }
   async getSubscription(id) {
     try {
-//      await this.mailService.sendMailTo(
-//        "example",
-//        { to: "alejandrosuaza.1022@gmail.com", subject: "welcome" },
-//        { name: "pepe", link: "http://example" },
-//        "servicesappemail@gmail.com",
-//        "Thebest123,"
-//      );
+      //      await this.mailService.sendMailTo(
+      //        "example",
+      //        { to: "alejandrosuaza.1022@gmail.com", subject: "welcome" },
+      //        { name: "pepe", link: "http://example" },
+      //        "servicesappemail@gmail.com",
+      //        "Thebest123,"
+      //      );
       let dataToReturn = { message: " operation successfully performed" };
       if (id) dataToReturn["data"] = (await this.dao.findById([id])).rows;
       else dataToReturn["data"] = (await this.dao.findByAll()).rows;

@@ -11,9 +11,7 @@ export default class servicioCorreo {
    *
    * @param {String} templateName name of the template to send
    * @param {Object} dataMail to who and subject
-   * @param {object} data to send to the temmplate
-   * @param {String} serverMail
-   * @param {String} pass password servermail
+   * @param {object} data to send to the template
    */
   async sendMailTo(templateName, dataMail, data) {
     try {
